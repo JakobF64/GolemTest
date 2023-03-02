@@ -12,55 +12,15 @@ app_ui <- function(request) {
     #Navbar structure for UI
     navbarPage("Payment Stats",
       tabPanel("Money Overview", fluid = TRUE,
-        sidebarLayout(
-          sidebarPanel(
-            
-            titlePanel("Desired Graph Characteristics"),
-        
-            sliderInput("bins",
-                        "Number of bins:",
-                        min = 1,
-                        max = 100,
-                        value = 30
-            ),
-            selectInput("Type", h3("Transformation"),
-                        choices = c('Payment', 'Log')
-            )
-        ),
-        mainPanel(plotOutput("plot1"))
-    )
+        mod_name_of_module1_ui("name_of_module1_1")
       ),
       
       tabPanel("Categorical Stuff", fluid = TRUE,
-        sidebarLayout(
-          sidebarPanel(
-            
-            titlePanel("Varible Histograms"),
-            
-            selectInput("yaxis", h3("Y Axis"),
-                        choices = c('Primary_Type',
-                                    'Payment_Form',
-                                    'Third_Party_Payment', 
-                                    'Number_of_Payments')
-            )
-          ),
-          mainPanel(plotOutput("plot2"))
-        )
+        mod_name_of_module2_ui("name_of_module2_1")
       ),
       
       tabPanel("Time Stuff", fluid = TRUE,
-        sidebarLayout(
-          sidebarPanel(
-            
-            titlePanel("Payment Over Time"),
-            
-            selectInput("Year", h3("Years"),
-              choices = c('All', '2013', '2014', '2015',
-                          '2016', '2017', '2018'))
-          ),
-          mainPanel(plotOutput("plot3", click = "plot_click"),
-                    tableOutput("data"))
-        )
+        mod_name_of_module3_ui("name_of_module3_1")
       )
     )
   )
