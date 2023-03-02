@@ -1,0 +1,25 @@
+Package: GolemTest
+Title: Movies
+Version: 0.0.0.9000
+Authors@R: person('Jakob', 'Fossen', email = 'Jakob.Fossen@jacks.sdstate.edu', role = c('cre', 'aut'))
+Description: Interesting statistics about Open Payments.
+License: What license is it under?
+Imports: 
+    attempt,
+    config (>= 0.3.1),
+    DT,
+    ggplot2,
+    glue,
+    golem (>= 0.3.5),
+    htmltools,
+    shiny (>= 1.7.3)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.2.3
+Suggests: 
+    spelling,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Language: en-US
+Depends: 
+    R (>= 2.10)
