@@ -9,21 +9,19 @@
 #' @import shiny 
 mod_name_of_module3_ui <- function(id){
   ns <- NS(id)
-  tagList(
-      
-      sidebarLayout(
-        sidebarPanel(
-          
-          titlePanel("Payment Over Time"),
-          
-          selectInput("Year", h3("Years"),
-            choices = c('All', '2013', '2014', '2015',
-                        '2016', '2017', '2018'))
-        ),
-        mainPanel(plotOutput("plot3", click = "plot_click"),
-                  tableOutput("data"))
-      )
-    
+  tagList( 
+    sidebarLayout(
+      sidebarPanel(
+        
+        titlePanel("Payment Over Time"),
+        
+        selectInput(ns("Year"), h3("Years"),
+          choices = c('All', '2013', '2014', '2015',
+                      '2016', '2017', '2018'))
+      ),
+      mainPanel(plotOutput(ns("plot3"), click = "plot_click"),
+                tableOutput(ns("data")))
+    )
   )
 }
     
@@ -40,7 +38,8 @@ mod_name_of_module3_server <- function(id){
       #unnecessarily complicated way of categorizing time
       if(input$Year == 'All'){
         ggplot(pay3, aes(x=date, y=Payment)) + geom_point() + 
-          xlab("Time") + scale_x_date(date_labels = "%Y", date_breaks = "1 year") +
+          xlab("Time") + 
+          scale_x_date(date_labels = "%Y", date_breaks = "1 year") +
           theme(axis.title.x = element_text(size = 16),
                 axis.text.x = element_text(size = 12),
                 axis.title.y = element_text(size = 16),
@@ -65,21 +64,23 @@ mod_name_of_module3_server <- function(id){
         tmp <- pay3[row.storer,]
         
         ggplot(tmp, aes(x=date, y=Payment)) + geom_point() + 
-          xlab(input$Year) + scale_x_date(date_labels = "%b", date_breaks = "1 month") +
+          xlab(input$Year) + 
+          scale_x_date(date_labels = "%b", date_breaks = "1 month") +
           theme(axis.title.x = element_text(size = 16),
                 axis.text.x = element_text(size = 16),
                 axis.title.y = element_text(size = 16),
                 axis.text.y = element_text(size = 16))
       }
-      
     })
     
     output$data <- renderTable({
       
-      nearPoints(pay3, input$plot_click, xvar = "date", yvar = "Payment")
+      nearPoints(pay3,
+                 input$plot_click,
+                 xvar = "date",
+                 yvar = "Payment")
       
     })
- 
   })
 }
     

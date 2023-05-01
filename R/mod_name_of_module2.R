@@ -10,22 +10,20 @@
 mod_name_of_module2_ui <- function(id){
   ns <- NS(id)
   tagList(
-      
-      sidebarLayout(
-        sidebarPanel(
-          
-          titlePanel("Varible Histograms"),
-          
-          selectInput("yaxis", h3("Y Axis"),
-                      choices = c('Primary_Type',
-                                  'Payment_Form',
-                                  'Third_Party_Payment', 
-                                  'Number_of_Payments')
-          )
-        ),
-        mainPanel(plotOutput("plot2"))
-      )
-    
+    sidebarLayout(
+      sidebarPanel(
+        
+        titlePanel("Varible Histograms"),
+        
+        selectInput(ns("yaxis"), h3("Y Axis"),
+                    choices = c('Primary_Type',
+                                'Payment_Form',
+                                'Third_Party_Payment', 
+                                'Number_of_Payments')
+        )
+      ),
+      mainPanel(plotOutput(ns("plot2")))
+    )
   )
 }
     
@@ -47,7 +45,6 @@ mod_name_of_module2_server <- function(id){
               axis.text.y = element_text(size = 16))
       
     }, height = 600)
- 
   })
 }
     

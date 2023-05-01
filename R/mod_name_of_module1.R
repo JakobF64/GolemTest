@@ -10,24 +10,22 @@
 mod_name_of_module1_ui <- function(id){
   ns <- NS(id)
   tagList(
-      
-      sidebarLayout(
-        sidebarPanel(
-          
-          titlePanel("Desired Graph Characteristics"),
-      
-          sliderInput("bins",
-                      "Number of bins:",
-                      min = 1,
-                      max = 100,
-                      value = 30
-          ),
-          selectInput("Type", h3("Transformation"),
-                      choices = c('Payment', 'Log')
-          )
+    sidebarLayout(
+      sidebarPanel(
+        titlePanel("Desired Graph Characteristics"),
+    
+        sliderInput(ns("bins"),
+                    "Number of bins:",
+                    min = 1,
+                    max = 100,
+                    value = 30
         ),
-        mainPanel(plotOutput("plot1"))
-      )
+        selectInput(ns("Type"), h3("Transformation"),
+                    choices = c('Payment', 'Log')
+        )
+      ),
+      mainPanel(plotOutput(ns("plot1")))
+    )
   )
 }
     
@@ -48,7 +46,6 @@ mod_name_of_module1_server <- function(id){
               axis.title.y = element_text(size = 16))
       
     }, height = 600)
- 
   })
 }
     
