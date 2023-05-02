@@ -13,3 +13,10 @@ golem::document_and_reload()
 
 # Run the application
 run_app()
+
+
+#Setting up the package
+remotes::install_local()
+
+#Sending to github
+remotes::install_github("https://github.com/JakobF64/GolemTest")
